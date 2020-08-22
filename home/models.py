@@ -74,7 +74,7 @@ class User(models.Model):
 class Post(models.Model):
     title = models.CharField(max_length=255)
     recipe = models.TextField()
-    chef = models.ForiegnKey(User, related_name = 'recipes_posted', on_delete=models.CASCADE)
+    chef = models.ForeignKey(User, related_name = 'recipes_posted', on_delete=models.CASCADE)
     like = models.ManyToManyField(User, related_name = 'recipes_liked')
 
     created_at = models.DateTimeField(auto_now_add=True)
@@ -83,7 +83,7 @@ class Post(models.Model):
 
 class Comment(models.Model):
     content = models.TextField()
-    commentor = models.ForiegnKey(User, related_name = 'comments_made', on_delete=models.CASCADE)
+    commentor = models.ForeignKey(User, related_name = 'comments_made', on_delete=models.CASCADE)
     like = models.ManyToManyField(User, related_name='comments_liked')
 
     created_at = models.DateTimeField(auto_now_add=True)
